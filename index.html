@@ -1,32 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AR Model Viewer</title>
+    <title>Model Viewer con AR</title>
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <style>
       body {
         margin: 0;
-        background: #000;
+        background-color: #fff;
+        font-family: sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
       }
       model-viewer {
         width: 100vw;
-        height: 100vh;
+        height: 90vh;
+      }
+      a.button {
+        display: inline-block;
+        margin: 1rem;
+        padding: 0.8rem 1.5rem;
+        background: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: bold;
       }
     </style>
   </head>
   <body>
     <model-viewer
       src="Model.glb"
+      alt="Modello 3D"
       ar
       ar-modes="scene-viewer webxr quick-look"
       auto-rotate
       camera-controls
-      exposure="1"
       shadow-intensity="1"
-      alt="Modello 3D"
+      exposure="1"
+      reveal="interaction"
     >
     </model-viewer>
+
+    <!-- Link diretto ad AR (Android con Scene Viewer) -->
+    <a
+      class="button"
+      href="intent://antonionoone.github.io/ModelViewer/model.glb#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;S.browser_fallback_url=https://antonionoone.github.io/ModelViewer/;end;"
+    >
+      Avvia in AR direttamente
+    </a>
   </body>
 </html>
