@@ -14,26 +14,18 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        height: 100vh;
       }
       model-viewer {
         width: 100vw;
         height: 90vh;
-      }
-      a.button {
-        display: inline-block;
-        margin: 1rem;
-        padding: 0.8rem 1.5rem;
-        background: #007bff;
-        color: white;
-        text-decoration: none;
-        border-radius: 8px;
-        font-weight: bold;
       }
     </style>
   </head>
   <body>
     <model-viewer
       src="Model.glb"
+      ios-src="Model.usdz"
       alt="Modello 3D"
       ar
       ar-modes="scene-viewer webxr quick-look"
@@ -41,16 +33,8 @@
       camera-controls
       shadow-intensity="1"
       exposure="1"
-      reveal="interaction"
+      reveal="auto"
     >
     </model-viewer>
-
-    <!-- Link diretto ad AR (Android con Scene Viewer) -->
-    <a
-      class="button"
-      href="intent://antonionoone.github.io/ModelViewer/model.glb#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;S.browser_fallback_url=https://antonionoone.github.io/ModelViewer/;end;"
-    >
-      Avvia in AR direttamente
-    </a>
   </body>
 </html>
