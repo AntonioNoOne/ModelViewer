@@ -13,17 +13,37 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         height: 100vh;
       }
+
       model-viewer {
         width: 100vw;
-        height: 90vh;
+        height: 80vh;
+      }
+
+      .ar-launcher {
+        margin-top: 1rem;
+        padding: 1rem 2rem;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        transition: background-color 0.3s;
+      }
+
+      .ar-launcher:hover {
+        background-color: #0056b3;
       }
     </style>
   </head>
   <body>
     <model-viewer
+      id="model3D"
       src="Model.glb"
       ios-src="Model.usdz"
       alt="Modello 3D"
@@ -36,5 +56,18 @@
       reveal="auto"
     >
     </model-viewer>
+
+    <button class="ar-launcher" onclick="launchAR()">Clicca qui per vedere in AR</button>
+
+    <script>
+      function launchAR() {
+        const modelViewer = document.getElementById('model3D');
+        if (modelViewer && modelViewer.activateAR) {
+          modelViewer.activateAR();
+        } else {
+          alert("La modalità AR non è supportata sul tuo dispositivo.");
+        }
+      }
+    </script>
   </body>
 </html>
