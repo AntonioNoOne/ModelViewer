@@ -22,9 +22,10 @@
         --imi-highlight: #00d4ff;
         --imi-gradient-start: #0f3460;
         --imi-gradient-end: #1a1a2e;
-        --imi-card-bg: rgba(255, 255, 255, 0.95);
+        --imi-card-bg: rgba(255, 255, 255, 0.98);
         --imi-text-dark: #1a1a2e;
         --imi-text-light: #6b7280;
+        --imi-white: #ffffff;
       }
 
       body {
@@ -54,13 +55,13 @@
       }
 
       .header {
-        background: rgba(26, 26, 46, 0.9);
-        backdrop-filter: blur(10px);
+        background: rgba(26, 26, 46, 0.95);
+        backdrop-filter: blur(15px);
         padding: 1.5rem 2rem;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         position: relative;
         z-index: 10;
-        border-bottom: 2px solid var(--imi-highlight);
+        border-bottom: 3px solid var(--imi-highlight);
       }
 
       .header-content {
@@ -79,11 +80,18 @@
         gap: 1rem;
       }
 
+      .logo-img {
+        height: 50px;
+        width: auto;
+        object-fit: contain;
+      }
+
       .logo-text {
         color: white;
         font-size: 1.8rem;
         font-weight: 800;
         letter-spacing: -0.5px;
+        display: none; /* Nascondi il testo se c'è il logo */
       }
 
       .logo-accent {
@@ -320,6 +328,7 @@
     <header class="header">
       <div class="header-content">
         <div class="logo-section">
+          <img src="assets/Imi_logo.png" alt="IMI Academy" class="logo-img">
           <div class="logo-text">
             IMI <span class="logo-accent">Academy</span>
           </div>
@@ -349,6 +358,10 @@
 
     <footer class="footer">
       <p>IMI Academy - Giavera del Montello | Corso XR e AI nella creazione di contenuti</p>
+      <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+        <a href="https://imiacademy.it/" target="_blank" style="color: var(--imi-highlight); text-decoration: none;">imiacademy.it</a> | 
+        Piazza Donatori del Sangue, 6 - 31040 Giavera del Montello (TV)
+      </p>
     </footer>
 
     <script>
