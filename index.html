@@ -363,13 +363,16 @@
       // Carica i modelli dal file JSON generato automaticamente
       async function loadModelsList() {
         try {
-          const response = await fetch('models.json');
+          // Aggiungi timestamp per evitare cache
+          const timestamp = new Date().getTime();
+          const response = await fetch(`models.json?v=${timestamp}`);
           if (!response.ok) {
             throw new Error('Errore nel caricamento di models.json');
           }
           const data = await response.json();
           models = data.models || [];
           console.log(`Caricati ${models.length} modelli automaticamente`);
+          console.log('Modelli:', models.map(m => m.name));
           
           // Inizializza i modelli dopo il caricamento
           initModels();
