@@ -65,13 +65,25 @@
       .logo-section {
         display: flex;
         align-items: center;
-        gap: 1rem;
+        gap: 1.5rem;
       }
 
       .logo-img {
         height: 45px;
         width: auto;
         object-fit: contain;
+      }
+
+      .jump-logo {
+        height: 50px;
+        width: auto;
+        object-fit: contain;
+        opacity: 0.9;
+        transition: opacity 0.3s;
+      }
+
+      .jump-logo:hover {
+        opacity: 1;
       }
 
       .logo-text {
@@ -244,10 +256,15 @@
     <header class="header">
       <div class="header-content">
         <div class="logo-section">
-          <img src="assets/Imi_logo.png" alt="IMI Academy" class="logo-img">
+          <a href="https://imiacademy.it/" target="_blank" style="display: flex; align-items: center;">
+            <img src="assets/Imi_logo.png" alt="IMI Academy" class="logo-img">
+          </a>
           <div class="logo-text">
             IMI <span class="logo-accent">Academy</span>
           </div>
+          <a href="https://academy.jumpgroup.it/bloom/" target="_blank" style="display: flex; align-items: center;">
+            <img src="assets/logoJump.png" alt="Jump Group" class="jump-logo">
+          </a>
         </div>
         <a href="index.html" class="back-button">
           ← Torna alla Selezione
@@ -283,6 +300,13 @@
         </div>
       </div>
     </div>
+
+    <footer class="footer" style="text-align: center; padding: 2rem; background: var(--imi-gray); color: var(--imi-text-secondary); font-size: 0.85rem; border-top: 1px solid var(--imi-gray-light); width: 100%;">
+      <p>IMI Academy - Giavera del Montello | Corso XR e AI nella creazione di contenuti</p>
+      <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+        Docenti: <a href="https://academy.jumpgroup.it/bloom/" target="_blank" style="color: var(--imi-orange); text-decoration: none; font-weight: 600;">Bloom Academy</a> by <a href="https://jumpgroup.it/" target="_blank" style="color: var(--imi-orange); text-decoration: none; font-weight: 600;">Jump Group</a>
+      </p>
+    </footer>
 
     <script>
       // Funzione per inizializzare il visualizzatore
