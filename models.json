@@ -1,6 +1,13 @@
 {
   "models": [
     {
+      "id": "antonioa",
+      "name": "Antonio A",
+      "file": "modelli/glb/AntonioA.glb",
+      "description": "Modello 3D: AntonioA",
+      "iosFile": "modelli/usdz/AntonioA.usdz"
+    },
+    {
       "id": "gaiam",
       "name": "Gaia M",
       "file": "modelli/glb/GaiaM.glb",
@@ -56,5 +63,5 @@
       "description": "Modello 3D: ScarponeMoonBoot"
     }
   ],
-  "generatedAt": "2026-01-05T14:40:47.007Z"
+  "generatedAt": "2026-01-05T16:28:05.079Z"
 }
