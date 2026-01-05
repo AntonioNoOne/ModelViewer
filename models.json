@@ -1,0 +1,60 @@
+{
+  "models": [
+    {
+      "id": "gaiam",
+      "name": "Gaia M",
+      "file": "modelli/glb/GaiaM.glb",
+      "description": "Modello 3D: GaiaM",
+      "iosFile": "modelli/usdz/GaiaM.usdz"
+    },
+    {
+      "id": "gianlucadm",
+      "name": "Gianluca D M",
+      "file": "modelli/glb/GianlucaDM.glb",
+      "description": "Modello 3D: GianlucaDM",
+      "iosFile": "modelli/usdz/GianlucaDM.usdz"
+    },
+    {
+      "id": "giulioc",
+      "name": "Giulio C",
+      "file": "modelli/glb/GiulioC.glb",
+      "description": "Modello 3D: GiulioC",
+      "iosFile": "modelli/usdz/GiulioC.usdz"
+    },
+    {
+      "id": "marcob",
+      "name": "Marco B",
+      "file": "modelli/glb/MarcoB.glb",
+      "description": "Modello 3D: MarcoB",
+      "iosFile": "modelli/usdz/MarcoB.usdz"
+    },
+    {
+      "id": "occhiali",
+      "name": "Occhiali",
+      "file": "modelli/glb/Occhiali.glb",
+      "description": "Modello 3D: Occhiali",
+      "iosFile": "modelli/usdz/Occhiali.usdz"
+    },
+    {
+      "id": "pamelas",
+      "name": "Pamela S",
+      "file": "modelli/glb/PamelaS.glb",
+      "description": "Modello 3D: PamelaS",
+      "iosFile": "modelli/usdz/PamelaS.usdz"
+    },
+    {
+      "id": "riccardop",
+      "name": "Riccardo P",
+      "file": "modelli/glb/RiccardoP.glb",
+      "description": "Modello 3D: RiccardoP",
+      "iosFile": "modelli/usdz/RiccardoP.usdz"
+    },
+    {
+      "id": "scarponemoonboot",
+      "name": "Scarpone Moon Boot",
+      "file": "modelli/glb/ScarponeMoonBoot.glb",
+      "description": "Modello 3D: ScarponeMoonBoot"
+    }
+  ],
+  "generatedAt": "2026-01-05T14:40:47.007Z"
+}

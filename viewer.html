@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IMI Academy - Visualizzatore AR</title>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --imi-primary: #1a1a2e;
+        --imi-secondary: #16213e;
+        --imi-accent: #0f3460;
+        --imi-highlight: #00d4ff;
+        --imi-gradient-start: #0f3460;
+        --imi-gradient-end: #1a1a2e;
+        --imi-card-bg: rgba(255, 255, 255, 0.95);
+        --imi-text-dark: #1a1a2e;
+        --imi-text-light: #6b7280;
+      }
+
+      body {
+        margin: 0;
+        background: linear-gradient(135deg, var(--imi-gradient-start) 0%, var(--imi-gradient-end) 100%);
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 100vh;
+        padding: 0;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+          radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
+          radial-gradient(circle at 40% 20%, rgba(0, 212, 255, 0.06) 0%, transparent 50%);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .header {
+        width: 100%;
+        background: rgba(26, 26, 46, 0.9);
+        backdrop-filter: blur(10px);
+        padding: 1.5rem 2rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        position: relative;
+        z-index: 10;
+        border-bottom: 2px solid var(--imi-highlight);
+      }
+
+      .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .logo-section {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .logo-text {
+        color: white;
+        font-size: 1.8rem;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+      }
+
+      .logo-accent {
+        color: var(--imi-highlight);
+      }
+
+      .back-button {
+        padding: 0.75rem 1.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: 2px solid var(--imi-highlight);
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 212, 255, 0.2);
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .back-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4);
+        background: var(--imi-highlight);
+        color: var(--imi-primary);
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        padding: 2rem 1rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .model-container {
+        width: 100%;
+        background: var(--imi-card-bg);
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid rgba(0, 212, 255, 0.2);
+      }
+
+      .model-title {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: var(--imi-text-dark);
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+      }
+
+      model-viewer {
+        width: 100%;
+        height: 70vh;
+        min-height: 400px;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        border: 2px solid rgba(0, 212, 255, 0.1);
+      }
+
+      .ar-launcher {
+        margin-top: 2rem;
+        padding: 1.2rem 2.5rem;
+        background: linear-gradient(135deg, var(--imi-accent) 0%, var(--imi-secondary) 100%);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 1.2rem;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(15, 52, 96, 0.3);
+        transition: all 0.3s ease;
+        width: 100%;
+        max-width: 400px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .ar-launcher::before {
+        content: '🚀';
+        margin-right: 0.5rem;
+      }
+
+      .ar-launcher:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(0, 212, 255, 0.4);
+        background: linear-gradient(135deg, var(--imi-highlight) 0%, #00a8cc 100%);
+      }
+
+      .ar-launcher:active {
+        transform: translateY(-1px);
+      }
+
+      .info-badge {
+        margin-top: 1.5rem;
+        padding: 1rem;
+        background: rgba(0, 212, 255, 0.1);
+        border: 1px solid var(--imi-highlight);
+        border-radius: 12px;
+        color: var(--imi-text-dark);
+        font-size: 0.9rem;
+        text-align: center;
+        max-width: 500px;
+        line-height: 1.6;
+      }
+
+      .info-badge strong {
+        color: var(--imi-accent);
+      }
+
+      @media (max-width: 768px) {
+        .header {
+          padding: 1rem;
+        }
+
+        .logo-text {
+          font-size: 1.4rem;
+        }
+
+        .header-content {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .back-button {
+          width: 100%;
+          justify-content: center;
+        }
+
+        model-viewer {
+          height: 60vh;
+          min-height: 300px;
+        }
+
+        .model-container {
+          padding: 1.5rem;
+        }
+
+        .model-title {
+          font-size: 1.4rem;
+        }
+
+        .ar-launcher {
+          font-size: 1rem;
+          padding: 1rem 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-content">
+        <div class="logo-section">
+          <div class="logo-text">
+            IMI <span class="logo-accent">Academy</span>
+          </div>
+        </div>
+        <a href="index.html" class="back-button">
+          ← Torna alla Selezione
+        </a>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="model-container">
+        <div class="model-title" id="modelTitle">Caricamento modello...</div>
+        
+        <model-viewer
+          id="model3D"
+          src=""
+          alt="Modello 3D"
+          ar
+          ar-modes="scene-viewer webxr quick-look"
+          auto-rotate
+          camera-controls
+          shadow-intensity="1"
+          exposure="1"
+          reveal="auto"
+        >
+        </model-viewer>
+
+        <button class="ar-launcher" onclick="launchAR()">
+          Visualizza in AR
+        </button>
+
+        <div class="info-badge">
+          <strong>💡 Suggerimento:</strong> Usa il pulsante AR per visualizzare il modello nella realtà aumentata. 
+          Ruota e ingrandisci il modello usando i controlli touch o mouse.
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Funzione per inizializzare il visualizzatore
+      function initViewer() {
+        // Prova prima localStorage (fallback per problemi con redirect del server)
+        let modelFile = localStorage.getItem('selectedModel');
+        let iosFile = localStorage.getItem('selectedModelIOS');
+        const modelName = localStorage.getItem('selectedModelName');
+        
+        if (modelFile) {
+          // Pulisci localStorage dopo aver letto
+          localStorage.removeItem('selectedModel');
+          localStorage.removeItem('selectedModelIOS');
+          localStorage.removeItem('selectedModelName');
+        } else {
+          // Se non in localStorage, prova dai parametri URL
+          const urlParams = new URLSearchParams(window.location.search);
+          modelFile = urlParams.get('model');
+          iosFile = urlParams.get('ios');
+        }
+
+        const modelViewer = document.getElementById('model3D');
+        const modelTitle = document.getElementById('modelTitle');
+
+        if (!modelViewer || !modelTitle) {
+          console.error('Elementi DOM non trovati!');
+          return;
+        }
+
+        // Mappa dei nomi dei modelli (supporta sia percorsi relativi che solo nomi file)
+        const modelNames = {
+          'modelli/glb/ScarponeMoonBoot.glb': 'Scarpone MoonBoot',
+          'ScarponeMoonBoot.glb': 'Scarpone MoonBoot',
+          'modelli/glb/ScarpaImy.glb': 'Scarpa Imy',
+          'ScarpaImy.glb': 'Scarpa Imy',
+          'modelli/glb/ScarpaProva.glb': 'Scarpa Prova',
+          'ScarpaProva.glb': 'Scarpa Prova',
+          'modelli/glb/Model.glb': 'Modello Generico',
+          'Model.glb': 'Modello Generico'
+        };
+
+        if (modelFile && modelFile.trim() !== '') {
+          modelViewer.setAttribute('src', modelFile);
+          if (iosFile && iosFile.trim() !== '') {
+            modelViewer.setAttribute('ios-src', iosFile);
+          }
+          
+          // Imposta il titolo (usa quello da localStorage se disponibile, altrimenti dalla mappa)
+          let displayName = modelName;
+          if (!displayName) {
+            // Prova prima con il percorso completo, poi solo con il nome file
+            displayName = modelNames[modelFile] || modelNames[modelFile.split('/').pop()];
+            if (!displayName) {
+              // Estrai solo il nome file senza estensione
+              const fileName = modelFile.split('/').pop().replace('.glb', '').replace('.usdz', '');
+              displayName = fileName;
+            }
+          }
+          modelTitle.textContent = displayName;
+
+          // Gestisci errori di caricamento
+          modelViewer.addEventListener('error', (e) => {
+            console.error('Errore nel caricamento del modello:', e);
+            modelTitle.textContent = 'Errore nel caricamento del modello';
+            modelTitle.style.color = '#ef4444';
+          });
+        } else {
+          modelTitle.textContent = 'Nessun modello selezionato';
+          modelTitle.style.color = '#ef4444';
+          
+          // Redirect alla home dopo 2 secondi
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 2000);
+        }
+      }
+
+      function launchAR() {
+        const modelViewer = document.getElementById('model3D');
+        if (modelViewer && modelViewer.activateAR) {
+          modelViewer.activateAR();
+        } else {
+          alert("La modalità AR non è supportata sul tuo dispositivo.");
+        }
+      }
+
+      // Inizializza quando il DOM è pronto
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initViewer);
+      } else {
+        initViewer();
+      }
+    </script>
+  </body>
+</html>
