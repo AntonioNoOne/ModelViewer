@@ -16,21 +16,21 @@
       }
 
       :root {
-        --imi-primary: #1a1a2e;
-        --imi-secondary: #16213e;
-        --imi-accent: #0f3460;
-        --imi-highlight: #00d4ff;
-        --imi-gradient-start: #0f3460;
-        --imi-gradient-end: #1a1a2e;
-        --imi-card-bg: rgba(255, 255, 255, 0.95);
-        --imi-text-dark: #1a1a2e;
-        --imi-text-light: #6b7280;
+        --imi-black: #000000;
+        --imi-white: #ffffff;
+        --imi-orange: #FF6B35;
+        --imi-orange-light: #FF8C61;
+        --imi-gray: #F5F5F5;
+        --imi-gray-dark: #333333;
+        --imi-gray-light: #E0E0E0;
+        --imi-text-primary: #000000;
+        --imi-text-secondary: #666666;
       }
 
       body {
         margin: 0;
-        background: linear-gradient(135deg, var(--imi-gradient-start) 0%, var(--imi-gradient-end) 100%);
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        background: var(--imi-white);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -39,32 +39,17 @@
         padding: 0;
         position: relative;
         overflow-x: hidden;
-      }
-
-      body::before {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: 
-          radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
-          radial-gradient(circle at 80% 80%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
-          radial-gradient(circle at 40% 20%, rgba(0, 212, 255, 0.06) 0%, transparent 50%);
-        pointer-events: none;
-        z-index: 0;
+        color: var(--imi-text-primary);
       }
 
       .header {
         width: 100%;
-        background: rgba(26, 26, 46, 0.9);
-        backdrop-filter: blur(10px);
+        background: var(--imi-white);
         padding: 1.5rem 2rem;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         position: relative;
         z-index: 10;
-        border-bottom: 2px solid var(--imi-highlight);
+        border-bottom: 1px solid var(--imi-gray-light);
       }
 
       .header-content {
@@ -84,33 +69,32 @@
       }
 
       .logo-img {
-        height: 50px;
+        height: 45px;
         width: auto;
         object-fit: contain;
       }
 
       .logo-text {
-        color: white;
+        color: var(--imi-black);
         font-size: 1.8rem;
-        font-weight: 800;
+        font-weight: 700;
         letter-spacing: -0.5px;
         display: none; /* Nascondi il testo se c'è il logo */
       }
 
       .logo-accent {
-        color: var(--imi-highlight);
+        color: var(--imi-orange);
       }
 
       .back-button {
         padding: 0.75rem 1.5rem;
-        background: rgba(255, 255, 255, 0.1);
-        color: white;
-        border: 2px solid var(--imi-highlight);
-        border-radius: 12px;
-        font-size: 1rem;
+        background: var(--imi-white);
+        color: var(--imi-text-primary);
+        border: 1px solid var(--imi-gray-light);
+        border-radius: 4px;
+        font-size: 0.9rem;
         font-weight: 600;
         cursor: pointer;
-        box-shadow: 0 4px 12px rgba(0, 212, 255, 0.2);
         transition: all 0.3s ease;
         text-decoration: none;
         display: inline-flex;
@@ -119,10 +103,10 @@
       }
 
       .back-button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4);
-        background: var(--imi-highlight);
-        color: var(--imi-primary);
+        transform: translateY(-1px);
+        border-color: var(--imi-orange);
+        color: var(--imi-orange);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       }
 
       .container {
@@ -135,23 +119,23 @@
 
       .model-container {
         width: 100%;
-        background: var(--imi-card-bg);
-        border-radius: 20px;
+        background: var(--imi-white);
+        border-radius: 8px;
         padding: 2rem;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         display: flex;
         flex-direction: column;
         align-items: center;
-        border: 1px solid rgba(0, 212, 255, 0.2);
+        border: 1px solid var(--imi-gray-light);
       }
 
       .model-title {
         width: 100%;
         text-align: center;
         margin-bottom: 1.5rem;
-        color: var(--imi-text-dark);
-        font-size: 1.8rem;
-        font-weight: 700;
+        color: var(--imi-text-primary);
+        font-size: 2rem;
+        font-weight: 600;
         letter-spacing: -0.5px;
       }
 
@@ -159,54 +143,54 @@
         width: 100%;
         height: 70vh;
         min-height: 400px;
-        border-radius: 16px;
+        border-radius: 4px;
         overflow: hidden;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-        border: 2px solid rgba(0, 212, 255, 0.1);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid var(--imi-gray-light);
       }
 
       .ar-launcher {
         margin-top: 2rem;
-        padding: 1.2rem 2.5rem;
-        background: linear-gradient(135deg, var(--imi-accent) 0%, var(--imi-secondary) 100%);
-        color: white;
+        padding: 1rem 2rem;
+        background: var(--imi-black);
+        color: var(--imi-white);
         border: none;
-        border-radius: 12px;
-        font-size: 1.2rem;
-        font-weight: 700;
+        border-radius: 4px;
+        font-size: 1rem;
+        font-weight: 600;
         cursor: pointer;
-        box-shadow: 0 4px 12px rgba(15, 52, 96, 0.3);
         transition: all 0.3s ease;
         width: 100%;
         max-width: 400px;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
+        letter-spacing: 1px;
         position: relative;
         overflow: hidden;
       }
 
       .ar-launcher::before {
-        content: '🚀';
+        content: '→';
         margin-right: 0.5rem;
+        font-size: 1.1rem;
       }
 
       .ar-launcher:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 24px rgba(0, 212, 255, 0.4);
-        background: linear-gradient(135deg, var(--imi-highlight) 0%, #00a8cc 100%);
+        transform: translateY(-2px);
+        background: var(--imi-orange);
+        box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
       }
 
       .ar-launcher:active {
-        transform: translateY(-1px);
+        transform: translateY(0);
       }
 
       .info-badge {
         margin-top: 1.5rem;
         padding: 1rem;
-        background: rgba(0, 212, 255, 0.1);
-        border: 1px solid var(--imi-highlight);
-        border-radius: 12px;
-        color: var(--imi-text-dark);
+        background: var(--imi-gray);
+        border: 1px solid var(--imi-gray-light);
+        border-radius: 4px;
+        color: var(--imi-text-secondary);
         font-size: 0.9rem;
         text-align: center;
         max-width: 500px;
@@ -214,7 +198,7 @@
       }
 
       .info-badge strong {
-        color: var(--imi-accent);
+        color: var(--imi-text-primary);
       }
 
       @media (max-width: 768px) {
